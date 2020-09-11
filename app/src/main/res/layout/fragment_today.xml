@@ -6,13 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".FragmentToday">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonAddEntry"
+        android:src="@drawable/ic_baseline_add_24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:clickable="true"
-        android:src="@color/colorAccent" />
+        android:focusable="true"
+        android:layout_margin="16dp"
+        app:fabSize="normal"
+        app:backgroundTint="@color/colorAccent"
+        app:elevation="6dp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>
