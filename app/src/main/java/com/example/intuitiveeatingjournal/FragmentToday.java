@@ -1,5 +1,6 @@
 package com.example.intuitiveeatingjournal;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,8 +28,18 @@ public class FragmentToday extends Fragment {
             public void onClick(View v) {
                 Snackbar.make(v, "Here's a Snackbar", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent intent = new Intent(getActivity(), AddEntryActivity.class);
+                startActivity(intent);
             }
         });
         return rootView;
+    }
+
+    public void updateList(Bundle args) {
+        String entry = args.getString("entry");
+        Integer before = args.getInt("before");
+        Integer after = args.getInt("after");
+        Snackbar.make(this.getView(), entry, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 }

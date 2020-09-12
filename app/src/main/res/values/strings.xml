@@ -3,4 +3,20 @@
     <string name="tab_today">Today</string>
     <string name="tab_stats">Stats</string>
     <string name="tab_history">History</string>
+    <string name="help_text">Description of food.</string>
+    <string name="help_slider1">Hunger Before</string>
+    <string name="help_slider2">Hunger After</string>
+    <string name="help_button">Submit</string>
+    <string name="help_rating">0: Painfully hungry. Intense and urgent.
+        \n1: Ravenous and irritable. Anxious to eat.
+        \n2: Very hungry. Looking forward to hearty meal or snack.
+        \n3: Hungry and ready to eat, but no urgency. Polite hunger.
+        \n4: Subtly hungry, slightly empty.
+        \n5: Neutral. Neither hungry nor full.
+        \n6: Emerging fullness.
+        \n7: Comfortable fullness, satisfied and content.
+        \n8: A little too full. Not pleasant nor unpleasant.
+        \n9: Very full, uncomfortable, loosen belt point.
+        \n10: Painfully full, stuffed. Nauseated.
+    </string>
 </resources>
