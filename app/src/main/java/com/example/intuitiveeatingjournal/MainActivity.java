@@ -58,23 +58,25 @@ public class MainActivity extends AppCompatActivity {
 
         // items
         items = new ArrayList<String>();
-        items.add("First Item");
-        items.add("Second Item");
+        readItems();
+//        items.add("First Item");
+//        items.add("Second Item");
 
         // Passing on intent
         Bundle results = getIntent().getBundleExtra("item");
         if (results != null) {
             String value1 = results.getString("entry");
             items.add(value1);
+            writeItems();
         }
     }
 
     // Save and persist items to file
     private void readItems() {
         File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "journal.txt");
+        File f = new File(filesDir, "journal.txt");
         try {
-            items = new ArrayList<String>(FileUtils.readLines(todoFile));
+            items = new ArrayList<String>(FileUtils.readLines(f));
         } catch (IOException e) {
             items = new ArrayList<String>();
         }
@@ -82,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void writeItems() {
         File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "journal.txt");
+        File f = new File(filesDir, "journal.txt");
         try {
-            FileUtils.writeLines(todoFile, items);
+            FileUtils.writeLines(f, items);
         } catch (IOException e) {
             e.printStackTrace();
         }
