@@ -52,7 +52,19 @@ public class FragmentToday extends Fragment {
         items.add("First Item");
         items.add("Second Item");
 
+        updateItems();
+
         return rootView;
+    }
+
+    public void updateItems() {
+        MainActivity activity = (MainActivity) getActivity();
+
+        Bundle results = activity.bundle;
+        if (results != null) {
+            String value1 = results.getString("entry");
+            items.add(value1);
+        }
     }
 
 //    private void readItems() {

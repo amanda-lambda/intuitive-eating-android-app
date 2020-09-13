@@ -19,6 +19,7 @@ public class AddEntryActivity extends AppCompatActivity {
     }
 
     /** Called when the user taps the Send button */
+    /** Sent to MainActivity, then TodayFragment */
     public void sendMessage(View view) {
         Snackbar.make(view, "bllop a Snackbar", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
@@ -40,6 +41,7 @@ public class AddEntryActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("item", bundle);
         startActivity(intent);
     }
 }

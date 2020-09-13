@@ -1,14 +1,19 @@
 package com.example.intuitiveeatingjournal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.BundleCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+//    TODO: Make this items
+    public Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,5 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        // Passing on intent
+        bundle = getIntent().getBundleExtra("item");
     }
 }
