@@ -10,10 +10,17 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
 //    TODO: Make this items
     public Bundle bundle;
+    public static ArrayList<String> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +56,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // items
+        items = new ArrayList<String>();
+        items.add("First Item");
+        items.add("Second Item");
+
         // Passing on intent
-        bundle = getIntent().getBundleExtra("item");
+        Bundle results = getIntent().getBundleExtra("item");
+        if (results != null) {
+            String value1 = results.getString("entry");
+            items.add(value1);
+        }
+    }
+
+    // Save and persist items to file
+    private void readItems() {
+        File filesDir = getFilesDir();
+        File todoFile = new File(filesDir, "journal.txt");
+        try {
+            items = new ArrayList<String>(FileUtils.readLines(todoFile));
+        } catch (IOException e) {
+            items = new ArrayList<String>();
+        }
+    }
+
+    private void writeItems() {
+        File filesDir = getFilesDir();
+        File todoFile = new File(filesDir, "journal.txt");
+        try {
+            FileUtils.writeLines(todoFile, items);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

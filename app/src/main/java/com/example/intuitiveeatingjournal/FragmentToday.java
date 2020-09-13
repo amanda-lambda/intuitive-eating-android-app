@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class FragmentToday extends Fragment {
 
-    private ArrayList<String> items;
     private ArrayAdapter<String> itemsAdapter;
     private ListView listView;
 
@@ -45,45 +44,11 @@ public class FragmentToday extends Fragment {
         });
 
         // List View
+        MainActivity activity = (MainActivity) getActivity();
         listView = (ListView) rootView.findViewById(R.id.listView);
-        items = new ArrayList<String>();
-        itemsAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, items);
+        itemsAdapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, activity.items);
         listView.setAdapter(itemsAdapter);
-        items.add("First Item");
-        items.add("Second Item");
-
-        updateItems();
 
         return rootView;
     }
-
-    public void updateItems() {
-        MainActivity activity = (MainActivity) getActivity();
-
-        Bundle results = activity.bundle;
-        if (results != null) {
-            String value1 = results.getString("entry");
-            items.add(value1);
-        }
-    }
-
-//    private void readItems() {
-//        File filesDir = getFilesDir();
-//        File todoFile = new File(filesDir, "todo.txt");
-//        try {
-//            items = new ArrayList<String>(FileUtils.readLines(todoFile));
-//        } catch (IOException e) {
-//            items = new ArrayList<String>();
-//        }
-//    }
-//
-//    private void writeItems() {
-//        File filesDir = getFilesDir();
-//        File todoFile = new File(filesDir, "todo.txt");
-//        try {
-//            FileUtils.writeLines(todoFile, items);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
