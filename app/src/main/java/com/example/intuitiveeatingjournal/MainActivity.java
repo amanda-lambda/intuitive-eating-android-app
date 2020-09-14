@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
 //    TODO: Make this items
     public Bundle bundle;
     public static ArrayList<String> entries;
-    public static ArrayList<Integer> befores;
-    public static ArrayList<Integer> afters;
+    public static ArrayList<String> befores;
+    public static ArrayList<String> afters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +61,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Get journal items
         entries = new ArrayList<String>();
-        befores = new ArrayList<Integer>();
-        afters = new ArrayList<Integer>();
+        befores = new ArrayList<String>();
+        afters = new ArrayList<String>();
         readItems();
 
         // Get new journal item and write to file
         Bundle results = getIntent().getBundleExtra("item");
         if (results != null) {
             String entry = results.getString("entry");
+            String before = results.getString("before");
+            String after = results.getString("after");
             entries.add(entry);
+            befores.add(before);
+            afters.add(after);
             writeItems();
         }
     }
@@ -77,19 +81,29 @@ public class MainActivity extends AppCompatActivity {
     // Save and persist items to file
     private void readItems() {
         File filesDir = getFilesDir();
-        File f = new File(filesDir, "journal.txt");
+        File f1 = new File(filesDir, "journal.txt");
+        File f2 = new File(filesDir, "befores.txt");
+        File f3 = new File(filesDir, "afters.txt");
         try {
-            entries = new ArrayList<String>(FileUtils.readLines(f));
+            entries = new ArrayList<String>(FileUtils.readLines(f1));
+            befores = new ArrayList<String>(FileUtils.readLines(f2));
+            afters = new ArrayList<String>(FileUtils.readLines(f3));
         } catch (IOException e) {
             entries = new ArrayList<String>();
+            befores = new ArrayList<String>();
+            afters = new ArrayList<String>();
         }
     }
 
     private void writeItems() {
         File filesDir = getFilesDir();
-        File f = new File(filesDir, "journal.txt");
+        File f1 = new File(filesDir, "journal.txt");
+        File f2 = new File(filesDir, "befores.txt");
+        File f3 = new File(filesDir, "afters.txt");
         try {
-            FileUtils.writeLines(f, entries);
+            FileUtils.writeLines(f1, entries);
+            FileUtils.writeLines(f2, befores);
+            FileUtils.writeLines(f3, afters);
         } catch (IOException e) {
             e.printStackTrace();
         }

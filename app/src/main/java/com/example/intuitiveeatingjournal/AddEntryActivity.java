@@ -36,9 +36,8 @@ public class AddEntryActivity extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("entry", entry);
-        bundle.putInt("before", before);
-        bundle.putInt("after", after);
-
+        bundle.putString("before", String.valueOf(before));
+        bundle.putString("after", String.valueOf(after));
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("item", bundle);

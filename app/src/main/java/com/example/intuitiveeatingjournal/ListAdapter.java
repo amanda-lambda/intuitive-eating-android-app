@@ -5,18 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class ListAdapter extends BaseAdapter {
     private ArrayList<String> entries;
-    private ArrayList<Integer> befores;
-    private ArrayList<Integer> afters;
+    private ArrayList<String> befores;
+    private ArrayList<String> afters;
     private Context context;
 
 
-    public ListAdapter(Context context, ArrayList<String> entries, ArrayList<Integer> befores, ArrayList<Integer> afters) {
+    public ListAdapter(Context context, ArrayList<String> entries, ArrayList<String> befores, ArrayList<String> afters) {
         this.entries = entries;
         this.befores = befores;
         this.afters = afters;
@@ -47,11 +48,18 @@ public class ListAdapter extends BaseAdapter {
         }
 
         // Getting views
-        TextView entry_view = (TextView) view.findViewById(R.id.list_item);
+        TextView entryView = (TextView) view.findViewById(R.id.list_item);
+        Button beforeButton = (Button)view.findViewById(R.id.before_btn);
+        Button afterButton = (Button)view.findViewById(R.id.after_btn);
 
         // Setting views
         String entry = entries.get(position);
-        entry_view.setText(entry);
+        String before = befores.get(position);
+        String after = afters.get(position);
+
+        entryView.setText(entry);
+        beforeButton.setText(before);
+        afterButton.setText(after);
 
         return view;
     }

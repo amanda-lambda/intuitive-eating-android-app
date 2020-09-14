@@ -14,15 +14,15 @@
         android:layout_marginLeft="17dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_toStartOf="@+id/after_btn"
-        android:layout_toLeftOf="@+id/after_btn"
+        android:layout_toStartOf="@+id/before_btn"
+        android:layout_toLeftOf="@+id/before_btn"
         android:paddingLeft="16dp"
         android:textColor="@color/colorPrimaryText"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/before_btn"
+        android:id="@+id/after_btn"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -31,12 +31,12 @@
 <!--        android:text="Delete" />-->
 
     <Button
-        android:id="@+id/after_btn"
+        android:id="@+id/before_btn"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@id/before_btn" />
+        android:layout_toLeftOf="@id/after_btn" />
 <!--        android:text="Add" />-->
 
 </RelativeLayout>

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class FragmentToday extends Fragment {
 
-    private ArrayAdapter<String> itemsAdapter;
     private ListView listView;
 
 
