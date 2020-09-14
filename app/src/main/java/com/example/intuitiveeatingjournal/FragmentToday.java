@@ -46,9 +46,8 @@ public class FragmentToday extends Fragment {
         // List View
         MainActivity activity = (MainActivity) getActivity();
         listView = (ListView) rootView.findViewById(R.id.listView);
-        itemsAdapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, activity.items);
-        listView.setAdapter(itemsAdapter);
-
+        ListAdapter adapter = new ListAdapter(activity, activity.entries, activity.befores, activity.afters);
+        listView.setAdapter(adapter);
         return rootView;
     }
 }

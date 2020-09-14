@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ListView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -20,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
 //    TODO: Make this items
     public Bundle bundle;
-    public static ArrayList<String> items;
+    public static ArrayList<String> entries;
+    public static ArrayList<Integer> befores;
+    public static ArrayList<Integer> afters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +59,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // items
-        items = new ArrayList<String>();
+        // Get journal items
+        entries = new ArrayList<String>();
+        befores = new ArrayList<Integer>();
+        afters = new ArrayList<Integer>();
         readItems();
-//        items.add("First Item");
-//        items.add("Second Item");
 
-        // Passing on intent
+        // Get new journal item and write to file
         Bundle results = getIntent().getBundleExtra("item");
         if (results != null) {
-            String value1 = results.getString("entry");
-            items.add(value1);
+            String entry = results.getString("entry");
+            entries.add(entry);
             writeItems();
         }
     }
@@ -76,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
         File filesDir = getFilesDir();
         File f = new File(filesDir, "journal.txt");
         try {
-            items = new ArrayList<String>(FileUtils.readLines(f));
+            entries = new ArrayList<String>(FileUtils.readLines(f));
         } catch (IOException e) {
-            items = new ArrayList<String>();
+            entries = new ArrayList<String>();
         }
     }
 
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         File filesDir = getFilesDir();
         File f = new File(filesDir, "journal.txt");
         try {
-            FileUtils.writeLines(f, items);
+            FileUtils.writeLines(f, entries);
         } catch (IOException e) {
             e.printStackTrace();
         }
