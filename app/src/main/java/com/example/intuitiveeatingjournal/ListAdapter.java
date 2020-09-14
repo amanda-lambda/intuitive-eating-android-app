@@ -1,5 +1,6 @@
 package com.example.intuitiveeatingjournal;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ public class ListAdapter extends BaseAdapter {
     private ArrayList<String> befores;
     private ArrayList<String> afters;
     private Context context;
+    private MainActivity activity;
 
 
     public ListAdapter(Context context, ArrayList<String> entries, ArrayList<String> befores, ArrayList<String> afters) {
@@ -22,6 +24,7 @@ public class ListAdapter extends BaseAdapter {
         this.befores = befores;
         this.afters = afters;
         this.context = context;
+        this.activity = (MainActivity) context;
     }
 
     @Override
@@ -60,6 +63,12 @@ public class ListAdapter extends BaseAdapter {
         entryView.setText(entry);
         beforeButton.setText(before);
         afterButton.setText(after);
+
+        // Setting colors
+        Integer before_pos = new Integer(before);
+        Integer after_pos = new Integer(after);
+        beforeButton.setBackgroundColor(activity.colors.get(before_pos));
+        afterButton.setBackgroundColor(activity.colors.get(after_pos));
 
         return view;
     }

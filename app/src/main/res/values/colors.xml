@@ -8,4 +8,17 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorDivider">#BDBDBD</color>
+
+    <!-- Rating colors -->
+    <color name="color0">#dd776e</color>
+    <color name="color1">#e79a69</color>
+    <color name="color2">#e9b861</color>
+    <color name="color3">#b0be6e</color>
+    <color name="color4">#94bd77</color>
+    <color name="color5">#57bb8a</color>
+    <color name="color6">#94bd77</color>
+    <color name="color7">#d4c86a</color>
+    <color name="color8">#e9b861</color>
+    <color name="color9">#e79a69</color>
+    <color name="color10">#dd776e</color>
 </resources>

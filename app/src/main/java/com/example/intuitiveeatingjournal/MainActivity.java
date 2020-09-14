@@ -19,16 +19,30 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-//    TODO: Make this items
     public Bundle bundle;
     public static ArrayList<String> entries;
     public static ArrayList<String> befores;
     public static ArrayList<String> afters;
+    public static ArrayList<Integer> colors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Colors
+        colors = new ArrayList<Integer>();
+        colors.add(getResources().getColor(R.color.color0));
+        colors.add(getResources().getColor(R.color.color1));
+        colors.add(getResources().getColor(R.color.color2));
+        colors.add(getResources().getColor(R.color.color3));
+        colors.add(getResources().getColor(R.color.color4));
+        colors.add(getResources().getColor(R.color.color5));
+        colors.add(getResources().getColor(R.color.color6));
+        colors.add(getResources().getColor(R.color.color7));
+        colors.add(getResources().getColor(R.color.color8));
+        colors.add(getResources().getColor(R.color.color9));
+        colors.add(getResources().getColor(R.color.color10));
 
         // Tab Layout
         TabLayout tabLayout = findViewById(R.id.tabBar);
