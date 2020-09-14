@@ -16,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -89,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
             afters.add(after);
             writeItems();
         }
+
+        // Reverse items (most recent first!)
+        Collections.reverse(entries);
+        Collections.reverse(befores);
+        Collections.reverse(afters);
     }
 
     // Save and persist items to file
