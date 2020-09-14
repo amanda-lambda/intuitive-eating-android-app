@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabBar);
         TabItem tabToday = findViewById(R.id.tabToday);
         TabItem tabStats = findViewById(R.id.tabStats);
-        TabItem tabHistory = findViewById(R.id.tabHistory);
         final ViewPager viewPager = findViewById(R.id.viewPager);
 
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),

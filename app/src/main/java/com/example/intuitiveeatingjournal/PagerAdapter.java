@@ -21,8 +21,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return new FragmentToday();
             case 1:
                 return new FragmentStats();
-            case 2:
-                return new FragmentHistory();
             default:
                 return null;
         }
