@@ -15,6 +15,15 @@ public class FragmentStats extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stats, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_stats, container, false);
+
+        MainActivity activity = (MainActivity) getActivity();
+        PixelGridView pixelGrid = new PixelGridView(activity);
+        pixelGrid.setNumColumns(4);
+        pixelGrid.setNumRows(6);
+
+//        setContentView(pixelGrid);
+
+        return pixelGrid;
     }
 }
