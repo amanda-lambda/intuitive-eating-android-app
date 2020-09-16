@@ -18,11 +18,9 @@ public class FragmentStats extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_stats, container, false);
 
         MainActivity activity = (MainActivity) getActivity();
-        PixelGridView pixelGrid = new PixelGridView(activity);
-        pixelGrid.setNumColumns(4);
-        pixelGrid.setNumRows(6);
-
-//        setContentView(pixelGrid);
+        PixelGridView pixelGrid = new PixelGridView(activity, activity.colors, activity.befores, activity.afters);
+        pixelGrid.setNumColumns(11);
+        pixelGrid.setNumRows(20);
 
         return pixelGrid;
     }

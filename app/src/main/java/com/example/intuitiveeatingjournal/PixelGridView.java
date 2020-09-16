@@ -4,22 +4,26 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class PixelGridView extends View {
-    private int numColumns, numRows;
-    private int cellWidth, cellHeight;
-    private Paint blackPaint = new Paint();
-    private boolean[][] cellChecked;
+    private int numColumns;
+    private int numRows;
+    private int cellWidth;
+    private int cellHeight;
+    private ArrayList<Integer> colors;
+    private ArrayList<String> befores;
+    private ArrayList<String> afters;
+    private Paint paint = new Paint();
 
-    public PixelGridView(Context context) {
-        this(context, null);
-    }
-
-    public PixelGridView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        blackPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+    public PixelGridView(Context context, ArrayList<Integer> colors, ArrayList<String> befores, ArrayList<String> afters) {
+        super(context, null);
+        paint.setStyle(Paint.Style.FILL);
+        this.befores = befores;
+        this.afters = afters;
+        this.colors = colors;
     }
 
     public void setNumColumns(int numColumns) {
@@ -54,8 +58,6 @@ public class PixelGridView extends View {
         cellWidth = getWidth() / numColumns;
         cellHeight = getHeight() / numRows;
 
-        cellChecked = new boolean[numColumns][numRows];
-
         invalidate();
     }
 
@@ -69,24 +71,34 @@ public class PixelGridView extends View {
 
         int width = getWidth();
         int height = getHeight();
+        int middleColumn = (numColumns - 1) / 2;
+        int num_entries = befores.size();
 
-        for (int i = 0; i < numColumns; i++) {
-            for (int j = 0; j < numRows; j++) {
-                if (cellChecked[i][j]) {
-
-                    canvas.drawRect(i * cellWidth, j * cellHeight,
-                            (i + 1) * cellWidth, (j + 1) * cellHeight,
-                            blackPaint);
+        int count = 0;
+        for (int j = 0; j < numRows; j++) {
+            for (int i = 0; i < middleColumn; i++) {
+                if (count >= num_entries) {
+                    return;
                 }
+
+                // Get befores and afters
+                String before = befores.get(count);
+                String after = afters.get(count);
+                Integer before_pos = new Integer(before);
+                Integer after_pos = new Integer(after);
+
+                // Draw rectangles
+                paint.setColor(colors.get(before_pos));
+                canvas.drawRect(i * cellWidth, j * cellHeight,
+                        (i + 1) * cellWidth, (j + 1) * cellHeight, paint);
+
+                paint.setColor(colors.get(after_pos));
+                canvas.drawRect((i + middleColumn + 1) * cellWidth, j * cellHeight,
+                        (i + middleColumn + 2) * cellWidth, (j + 1) * cellHeight, paint);
+
+                // Increment
+                count = count + 1;
             }
-        }
-
-        for (int i = 1; i < numColumns; i++) {
-            canvas.drawLine(i * cellWidth, 0, i * cellWidth, height, blackPaint);
-        }
-
-        for (int i = 1; i < numRows; i++) {
-            canvas.drawLine(0, i * cellHeight, width, i * cellHeight, blackPaint);
         }
     }
 }
