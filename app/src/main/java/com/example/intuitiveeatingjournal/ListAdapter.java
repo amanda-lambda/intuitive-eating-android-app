@@ -1,6 +1,5 @@
 package com.example.intuitiveeatingjournal;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +53,6 @@ public class ListAdapter extends BaseAdapter {
 
         // Getting views
         TextView entryView = (TextView) view.findViewById(R.id.list_item);
-//        TextView dateView = (TextView) view.findViewById(R.id.date_item);
         Button beforeButton = (Button)view.findViewById(R.id.before_btn);
         Button afterButton = (Button)view.findViewById(R.id.after_btn);
 
