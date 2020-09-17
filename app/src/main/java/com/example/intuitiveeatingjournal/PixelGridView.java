@@ -4,15 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
 
 public class PixelGridView extends View {
-    private int numColumns;
+    private int numColumns = 13;
+    private int cellSize;
     private int numRows;
-    private int cellWidth;
-    private int cellHeight;
+    private int border = 1;
     private ArrayList<Integer> colors;
     private ArrayList<String> befores;
     private ArrayList<String> afters;
@@ -24,55 +25,30 @@ public class PixelGridView extends View {
         this.befores = befores;
         this.afters = afters;
         this.colors = colors;
-    }
-
-    public void setNumColumns(int numColumns) {
-        this.numColumns = numColumns;
-        calculateDimensions();
-    }
-
-    public int getNumColumns() {
-        return numColumns;
-    }
-
-    public void setNumRows(int numRows) {
-        this.numRows = numRows;
-        calculateDimensions();
-    }
-
-    public int getNumRows() {
-        return numRows;
+        this.border = 1;
+        invalidate();
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        calculateDimensions();
-    }
-
-    private void calculateDimensions() {
-        if (numColumns < 1 || numRows < 1) {
-            return;
-        }
-
-        cellWidth = getWidth() / numColumns;
-        cellHeight = getHeight() / numRows;
-
-        invalidate();
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // Compute the height required to render the view
+        // Assume Width will always be MATCH_PARENT.
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = 7000+ 50; // Since 3000 is bottom of last Rect to be drawn added and 50 for padding.
+        setMeasuredDimension(width, height);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
 
-        if (numColumns == 0 || numRows == 0) {
-            return;
-        }
-
         int width = getWidth();
         int height = getHeight();
+
         int middleColumn = (numColumns - 1) / 2;
         int num_entries = befores.size();
+        numRows = (num_entries + numColumns - 1) / numColumns;
+        cellSize = width / numColumns;
 
         int count = 0;
         for (int j = 0; j < numRows; j++) {
@@ -89,12 +65,12 @@ public class PixelGridView extends View {
 
                 // Draw rectangles
                 paint.setColor(colors.get(before_pos));
-                canvas.drawRect(i * cellWidth, j * cellHeight,
-                        (i + 1) * cellWidth, (j + 1) * cellHeight, paint);
+                canvas.drawRect(i * cellSize + border, j * cellSize + border,
+                        (i + 1) * cellSize - border, (j + 1) * cellSize - border, paint);
 
                 paint.setColor(colors.get(after_pos));
-                canvas.drawRect((i + middleColumn + 1) * cellWidth, j * cellHeight,
-                        (i + middleColumn + 2) * cellWidth, (j + 1) * cellHeight, paint);
+                canvas.drawRect((i + middleColumn + 1) * cellSize + border, j * cellSize + border,
+                        (i + middleColumn + 2) * cellSize - border, (j + 1) * cellSize - border, paint);
 
                 // Increment
                 count = count + 1;
