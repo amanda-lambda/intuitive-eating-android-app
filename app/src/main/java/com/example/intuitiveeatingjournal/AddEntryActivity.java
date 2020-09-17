@@ -11,6 +11,11 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class AddEntryActivity extends AppCompatActivity {
 
     @Override
@@ -73,6 +78,9 @@ public class AddEntryActivity extends AppCompatActivity {
         SeekBar seekbar2 = (SeekBar) findViewById(R.id.hungerAfter);
 
         // Extract form information
+        Date currentTime = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+        String date = dateFormat.format(currentTime);
         String entry = editText.getText().toString();
         int before = seekbar1.getProgress();
         int after = seekbar2.getProgress();
@@ -81,6 +89,7 @@ public class AddEntryActivity extends AppCompatActivity {
         bundle.putString("entry", entry);
         bundle.putString("before", String.valueOf(before));
         bundle.putString("after", String.valueOf(after));
+        bundle.putString("date", date);
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("item", bundle);

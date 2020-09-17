@@ -15,14 +15,16 @@ public class ListAdapter extends BaseAdapter {
     private ArrayList<String> entries;
     private ArrayList<String> befores;
     private ArrayList<String> afters;
+    private ArrayList<String> dates;
     private Context context;
     private MainActivity activity;
 
 
-    public ListAdapter(Context context, ArrayList<String> entries, ArrayList<String> befores, ArrayList<String> afters) {
+    public ListAdapter(Context context, ArrayList<String> entries, ArrayList<String> befores, ArrayList<String> afters, ArrayList<String> dates) {
         this.entries = entries;
         this.befores = befores;
         this.afters = afters;
+        this.dates = dates;
         this.context = context;
         this.activity = (MainActivity) context;
     }
@@ -52,6 +54,7 @@ public class ListAdapter extends BaseAdapter {
 
         // Getting views
         TextView entryView = (TextView) view.findViewById(R.id.list_item);
+//        TextView dateView = (TextView) view.findViewById(R.id.date_item);
         Button beforeButton = (Button)view.findViewById(R.id.before_btn);
         Button afterButton = (Button)view.findViewById(R.id.after_btn);
 
@@ -59,8 +62,9 @@ public class ListAdapter extends BaseAdapter {
         String entry = entries.get(position);
         String before = befores.get(position);
         String after = afters.get(position);
+        String date = dates.get(position);
 
-        entryView.setText(entry);
+        entryView.setText(entry + "\n" + date);
         beforeButton.setText(before);
         afterButton.setText(after);
 

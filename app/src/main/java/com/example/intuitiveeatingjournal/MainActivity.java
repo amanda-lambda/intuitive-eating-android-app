@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> befores;
     public static ArrayList<String> afters;
     public static ArrayList<Integer> colors;
+    public static ArrayList<String> dates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         entries = new ArrayList<String>();
         befores = new ArrayList<String>();
         afters = new ArrayList<String>();
+        dates = new ArrayList<String>();
         readItems();
 
         // Get new journal item and write to file
@@ -85,9 +87,11 @@ public class MainActivity extends AppCompatActivity {
             String entry = results.getString("entry");
             String before = results.getString("before");
             String after = results.getString("after");
+            String date = results.getString("date");
             entries.add(entry);
             befores.add(before);
             afters.add(after);
+            dates.add(date);
             writeItems();
         }
 
@@ -95,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         Collections.reverse(entries);
         Collections.reverse(befores);
         Collections.reverse(afters);
+        Collections.reverse(dates);
     }
 
     // Save and persist items to file
@@ -103,14 +108,17 @@ public class MainActivity extends AppCompatActivity {
         File f1 = new File(filesDir, "journal.txt");
         File f2 = new File(filesDir, "befores.txt");
         File f3 = new File(filesDir, "afters.txt");
+        File f4 = new File(filesDir, "dates.txt");
         try {
             entries = new ArrayList<String>(FileUtils.readLines(f1));
             befores = new ArrayList<String>(FileUtils.readLines(f2));
             afters = new ArrayList<String>(FileUtils.readLines(f3));
+            dates = new ArrayList<String>(FileUtils.readLines(f4));
         } catch (IOException e) {
             entries = new ArrayList<String>();
             befores = new ArrayList<String>();
             afters = new ArrayList<String>();
+            dates = new ArrayList<String>();
         }
     }
 
@@ -119,10 +127,12 @@ public class MainActivity extends AppCompatActivity {
         File f1 = new File(filesDir, "journal.txt");
         File f2 = new File(filesDir, "befores.txt");
         File f3 = new File(filesDir, "afters.txt");
+        File f4 = new File(filesDir, "dates.txt");
         try {
             FileUtils.writeLines(f1, entries);
             FileUtils.writeLines(f2, befores);
             FileUtils.writeLines(f3, afters);
+            FileUtils.writeLines(f4, dates);
         } catch (IOException e) {
             e.printStackTrace();
         }
