@@ -71,9 +71,8 @@ public class FragmentStats extends Fragment {
         gridView.setAdapter(new ArrayAdapter<String>(activity, R.layout.cell, cellValues));
 
         // Set color
-//        int count = gridView.getCount();
-//        for(int i=0;i<count;i++){
-//            gridView.getChildAt(i).setBackgroundColor(Color.parseColor("#18A608"));
+//        for (int i = 0; i < numEntries; i++) {
+//            gridView.getChildAt(i).setBackgroundColor(cellColors.get(i));
 //        }
         return rootView;
     }
