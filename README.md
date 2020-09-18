@@ -1,4 +1,4 @@
-# ![icon](app/src/main/res/mimap-mdpi/ic_launcher_round.png) Intuitive Eating Journal App
+# ![icon](app/src/main/res/mipmap-mdpi/ic_launcher_round.png) Intuitive Eating Journal App
 
 This is an Android phone app to help log your intuitive eating recovery. I couldn't find any apps that supported this type of journaling, so here's my first attempt with some bare-bones features! I hope this helps someone also looking for an app with similar functionality :)
 
