@@ -23,21 +23,12 @@ public class FragmentStats extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_stats, container, false);
 
-        // Make pixel grid
-//        MainActivity activity = (MainActivity) getActivity();
-//        PixelGridView pixelGrid = new PixelGridView(activity, activity.colors, activity.befores, activity.afters);
-//
-//        return pixelGrid;
-        // List View
+        // Interleave
         MainActivity activity = (MainActivity) getActivity();
-//        listView = (ListView) rootView.findViewById(R.id.statsGrid);
-//        GridAdapter adapter = new GridAdapter(activity, activity.befores, activity.afters, activity.dates);
-//        listView.setAdapter(adapter);
-        GridView gridBefore = (GridView) rootView.findViewById(R.id.gridViewBefore);
-//        GridView gridAfter = (GridView) rootView.findViewById(R.id.gridViewBefore);
 
-        gridBefore.setAdapter(new ArrayAdapter<String>(activity, R.layout.cell, activity.befores));
-//        gridAfter.setAdapter(new ArrayAdapter<String>(activity, R.layout.cell, activity.befores));
+        // Grid View
+        GridView gridView = (GridView) rootView.findViewById(R.id.gridView);
+        gridView.setAdapter(new ArrayAdapter<String>(activity, R.layout.cell, activity.befores));
         return rootView;
     }
 }
