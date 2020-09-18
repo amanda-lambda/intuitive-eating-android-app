@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,12 +69,7 @@ public class FragmentStats extends Fragment {
 
         // Grid View
         GridView gridView = (GridView) rootView.findViewById(R.id.gridView);
-        gridView.setAdapter(new ArrayAdapter<String>(activity, R.layout.cell, cellValues));
-
-        // Set color
-//        for (int i = 0; i < numEntries; i++) {
-//            gridView.getChildAt(i).setBackgroundColor(cellColors.get(i));
-//        }
+        gridView.setAdapter(new GridAdapter(activity, R.layout.cell, cellValues, cellColors));
         return rootView;
     }
 }
