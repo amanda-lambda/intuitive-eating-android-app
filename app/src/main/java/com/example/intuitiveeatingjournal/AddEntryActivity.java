@@ -50,7 +50,7 @@ public class AddEntryActivity extends AppCompatActivity {
 
         // Seekbar
         SeekBar sk2 = (SeekBar) findViewById(R.id.hungerAfter);
-        int i2 = sk.getProgress();
+        int i2 = sk2.getProgress();
         TextView t2 = (TextView) findViewById(R.id.textView5);
         t2.setText(String.valueOf(i2));
 

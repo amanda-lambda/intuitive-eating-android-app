@@ -33,21 +33,24 @@ public class FragmentStats extends Fragment {
         int numColumns = 13;
         int middleColumn = (numColumns - 1) / 2;
         int numEntries = activity.befores.size();
-        int numRows = (numEntries + numColumns - 1) / numColumns;
+        int numRows = (numEntries + middleColumn - 1) / middleColumn;
 
-        int count = 0;
+        int count1 = 0;
+        int count2 = 0;
         for (int j = 0; j < numRows; j++) {
             // Before half
             for (int i = 0; i < middleColumn; i++) {
-                if (count >= numEntries) {
+                if (count1 >= numEntries) {
+                    cellValues.add("");
+                    cellColors.add(Color.WHITE);
                     continue;
                 }
-                String before = activity.befores.get(count);
+                String before = activity.befores.get(count1);
                 Integer before_pos = new Integer(before);
                 Integer before_color = activity.colors.get(before_pos);
                 cellValues.add(before);
                 cellColors.add(before_color);
-                count = count + 1;
+                count1 = count1 +1;
             }
             // Empty
             cellValues.add("");
@@ -55,18 +58,22 @@ public class FragmentStats extends Fragment {
 
             // After half
             for (int i = 0; i < middleColumn; i++) {
-                if (count >= numEntries) {
+                if (count2 >= numEntries) {
+                    cellValues.add("");
+                    cellColors.add(Color.WHITE);
                     continue;
                 }
-                String after = activity.afters.get(count);
+                String after = activity.afters.get(count2);
                 Integer after_pos = new Integer(after);
                 Integer after_color = activity.colors.get(after_pos);
                 cellValues.add(after);
                 cellColors.add(after_color);
-                count = count + 1;
+                count2 = count2 + 1;
             }
         }
 
+        Log.d("cellVAlues length", String.valueOf(cellValues.size()));
+        Log.d("cellColors length", String.valueOf(cellColors.size()));
         // Grid View
         GridView gridView = (GridView) rootView.findViewById(R.id.gridView);
         gridView.setAdapter(new GridAdapter(activity, R.layout.cell, cellValues, cellColors));
