@@ -25,6 +25,10 @@ public class AddEntryActivity extends AppCompatActivity {
 
         // Seekbar
         SeekBar sk = (SeekBar) findViewById(R.id.hungerBefore);
+        int i = sk.getProgress();
+        TextView t = (TextView) findViewById(R.id.textView4);
+        t.setText(String.valueOf(i));
+
         sk.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -46,6 +50,10 @@ public class AddEntryActivity extends AppCompatActivity {
 
         // Seekbar
         SeekBar sk2 = (SeekBar) findViewById(R.id.hungerAfter);
+        int i2 = sk.getProgress();
+        TextView t2 = (TextView) findViewById(R.id.textView5);
+        t2.setText(String.valueOf(i2));
+
         sk2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
